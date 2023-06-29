@@ -1,6 +1,7 @@
-import Navbar from '@/components/Navbar';
-import './globals.css';
 import { Open_Sans } from 'next/font/google';
+import Navbar from '@/components/Navbar';
+import AuthContext from '@/context/AuthContext';
+import './globals.css';
 
 const openSans = Open_Sans({ subsets: ['latin'] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
         className="w-full max-w-screen-xl overflow-auto mx-auto"
         suppressHydrationWarning={true}
       >
-        <header className="sticky top-0 bg-white z-10 border-b">
-          <Navbar />
-        </header>
-        <main>{children}</main>
-        <footer></footer>
+        <AuthContext>
+          <header className="sticky top-0 bg-white z-10 border-b">
+            <Navbar />
+          </header>
+          <main>{children}</main>
+          <footer>Footer</footer>
+        </AuthContext>
       </body>
     </html>
   );
