@@ -35,7 +35,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   app: {
-    signIn: '/auth/signin',
+    signIn: '/api/auth/signin',
   },
 };
 
