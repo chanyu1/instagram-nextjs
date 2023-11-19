@@ -19,19 +19,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <body
-        className="w-full overflow-auto bg-neutral-50"
+        className="w-full max-w-screen-xl overflow-auto mx-auto"
         suppressHydrationWarning={true}
       >
         <AuthContext>
           <header className="sticky top-0 bg-white z-10 border-b">
-            <div className="max-w-screen-xl mx-auto">
-              <Navbar />
-            </div>
+            {/* <div className="max-w-screen-xl mx-auto"> */}
+            <Navbar />
+            {/* </div> */}
           </header>
-          <main className="w-full flex justify-center max-w-screen-xl mx-auto">
+          <main className="w-full flex justify-center bg-neutral-50 min-h-full">
             <SWRConfigContext>{children}</SWRConfigContext>
           </main>
         </AuthContext>
+        <div id="portal" />
       </body>
     </html>
   );

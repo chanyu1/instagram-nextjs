@@ -1,9 +1,13 @@
 import { getServerSession } from 'next-auth';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { getFollowingPostsOf } from '@/service/posts';
+import { getFollowingPostsOf, getPost } from '@/service/posts';
 
-export async function GET() {
+type Context = {
+  params: { id: string };
+};
+
+export async function GET(request: NextRequest, context: Context) {
   const session = await getServerSession(authOptions);
   const user = session?.user;
 
@@ -11,6 +15,6 @@ export async function GET() {
     return new Response('authentication Error', { status: 401 });
   }
 
-  return getFollowingPostsOf(user.username) //
+  return getPost(context.params.id) //
     .then((data) => NextResponse.json(data));
 }
